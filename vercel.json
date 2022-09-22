@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+        { "source": "/webcam", "destination": "/webcam" },
+        { "source": "/ios", "destination": "/ios" }
+    ]
+}
