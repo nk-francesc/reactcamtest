@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import Camera, { DEVICE, FACING_MODE, PLACEMENT } from 'react-camera-ios';
 import './styles.css';
 import 'react-camera-ios/build/styles.css';
@@ -12,6 +11,12 @@ const ReactIos = () => {
     const [imgSrc, setImgSrc] = useState(null);
     const [urlData, setUrlData] = useState(null);
 
+    const [image, setImage] = useState(null);
+    const [imgBlob, setImgBlob] = useState(null);
+    const [imgError, setImgError] = useState(null);
+
+    const editFileRef = useRef();
+
     const handleData = (data) => {
         setUrlData(data);
     }
@@ -20,10 +25,43 @@ const ReactIos = () => {
         setErrorCam(error);
     }
 
+    const handleSelecImg = () => {
+        editFileRef.current.click();
+    }
+
+    const onFileChange = (e) => {
+        if (!e.target.files[0]) {
+            return;
+        }
+
+        let imgData = e.target.files[0];
+        let imgType = e.target.files[0].type;
+        let typeSplit = imgType.split('/');
+        let imgSize = e.target.files[0].size;
+        if (typeSplit[0] === 'image' && imgSize < 700000) {
+            setImgError(false);
+            setImage(imgData);
+        } else {
+            setImgError(true);
+        }
+    }
+
+    useEffect(() => {
+        console.log(image);
+        if (image !== null) {
+            const objectUrl = URL.createObjectURL(image);
+            setImgBlob(objectUrl);
+        }
+    }, [image])
+    
+
     return (
         <>
             iOS:
             <br />
+
+            <input ref={editFileRef} onChange={onFileChange} type="file" id="formFile" accept="image/png, image/jpeg" style={{ display: 'none' }} />
+            <button type="button" onClick={(e) => handleSelecImg(e)}>Seleccionar archivo</button>
 
             {errorCam ? (
                 <div>
@@ -41,13 +79,34 @@ const ReactIos = () => {
                     />
                 </div>
             )}
-            
+
             dataUrl:
-            <br />
             {urlData}
             <br />
-
-
+            <br />
+            foto:
+            <br />
+            {urlData ? (
+                <div>
+                    <img style={{width: '200px', height: '200px', objectFit: 'cover'}} src={urlData} alt='captured image' />
+                </div>
+            ) : (
+                <div>
+                    no foto
+                </div>
+            )}
+            <br />
+            foto seleccionada:
+            <br />
+            {imgBlob ? (
+                <div>
+                    <img style={{width: '200px', height: '200px', objectFit: 'cover'}} src={imgBlob} alt='selected image' />
+                </div>
+            ) : (
+                <div>
+                    no foto
+                </div>
+            )}
         </>
     );
 }
