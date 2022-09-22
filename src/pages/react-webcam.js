@@ -1,9 +1,13 @@
 import React, { useRef, useState, useCallback } from 'react';
 import Webcam from "react-webcam";
+import './styles.css';
+
 const WebcamComponent = () => <Webcam />;
 
 const ReactWebcam = () => {
     const webcamRef = useRef(null);
+
+    const [errorCam, setErrorCam] = useState();
     const [imgSrc, setImgSrc] = useState(null);
 
     const capture = useCallback(() => {
@@ -17,27 +21,38 @@ const ReactWebcam = () => {
         facingMode: { exact: "environment" }
     };
 
+    const handleError = (error) => {
+        setErrorCam(error);
+    }
+
     return (
         <div>
             webcam:
             <br />
 
-            <div className="camcanvas">
-                <Webcam
-                    audio={false}
-                    ref={webcamRef}
-                    screenshotFormat="image/jpeg"
-                    videoConstraints={videoConstraints}
-                />
-            </div>
+            {errorCam ? (
+                <div>
+                    no cam
+                </div>
+            ) : (
+                <div className="camcanvas">
+                    <Webcam
+                        audio={false}
+                        ref={webcamRef}
+                        screenshotFormat="image/jpeg"
+                        videoConstraints={videoConstraints}
+                        onUserMediaError={(error) => handleError(error)}
+                    />
+                </div>
+            )}
 
             <button onClick={capture}>Capture photo</button>
 
             foto:
-            <br/>
+            <br />
 
             {imgSrc && (
-                <img src={imgSrc} style={{width: '100%'}}/>
+                <img src={imgSrc} style={{ width: '100%' }} />
             )}
         </div>
     );
