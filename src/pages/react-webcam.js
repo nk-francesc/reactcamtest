@@ -11,6 +11,12 @@ const ReactWebcam = () => {
       setImgSrc(imageSrc);
     }, [webcamRef, setImgSrc]);
 
+    const videoConstraints = {
+        width: 1280,
+        height: 720,
+        facingMode: { exact: "environment" }
+    };
+    
     return (
         <div>
             webcam:
@@ -20,6 +26,7 @@ const ReactWebcam = () => {
                 audio={false}
                 ref={webcamRef}
                 screenshotFormat="image/jpeg"
+                videoConstraints={videoConstraints}
             />
             <button onClick={capture}>Capture photo</button>
             {imgSrc && (

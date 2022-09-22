@@ -4,24 +4,23 @@ import Camera, { DEVICE, FACING_MODE, PLACEMENT } from 'react-camera-ios';
 
 import 'react-camera-ios/build/styles.css';
 
-const containerStyle = { display: 'flex', height: '300px', width: '300px' };
+const containerStyle = { display: 'flex', height: '520px', width: '100%' };
 
 const ReactIos = () => {
     return (
         <>
-            iOS test:
+            iOS:
             <br />
 
             <div style={containerStyle}>
-            { /*  <Camera
+                <Camera
                     device={DEVICE.MOBILE}
                     facingMode={FACING_MODE.ENVIRONMENT}
                     placement={PLACEMENT.COVER}
                     quality="1"
                     onError={error => console.log(error)}
                     onTakePhoto={dataUrl => console.log(dataUrl)}
-                />*/ }
-               
+                />
             </div>
         </>
     );
