@@ -7,6 +7,14 @@ import 'react-camera-ios/build/styles.css';
 const containerStyle = { display: 'flex', height: '520px', width: '100%' };
 
 const ReactIos = () => {
+
+    const [imgSrc, setImgSrc] = useState(null);
+    const [urlData, setUrlData] = useState(null);
+
+    const handleData = (data) => {
+        setUrlData(data);
+    }
+
     return (
         <>
             iOS:
@@ -19,9 +27,16 @@ const ReactIos = () => {
                     placement={PLACEMENT.COVER}
                     quality="1"
                     onError={error => console.log(error)}
-                    onTakePhoto={dataUrl => console.log(dataUrl)}
+                    onTakePhoto={dataUrl => handleData(dataUrl)}
                 />
             </div>
+
+            dataUrl:
+            <br/>
+            {urlData}
+            <br/>
+
+
         </>
     );
 }
