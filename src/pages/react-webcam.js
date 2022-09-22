@@ -16,8 +16,8 @@ const ReactWebcam = () => {
     }, [webcamRef, setImgSrc]);
 
     const videoConstraints = {
-        width: '100%',
-        height: 520,
+        width: 500,
+        height: 500,
         facingMode: { exact: "environment" }
     };
 
