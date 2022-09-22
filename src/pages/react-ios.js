@@ -15,6 +15,8 @@ const ReactIos = () => {
     const [imgBlob, setImgBlob] = useState(null);
     const [imgError, setImgError] = useState(null);
 
+    const [show, setShow] = useState(false);
+
     const editFileRef = useRef();
 
     const handleData = (data) => {
@@ -52,8 +54,33 @@ const ReactIos = () => {
             const objectUrl = URL.createObjectURL(image);
             setImgBlob(objectUrl);
         }
-    }, [image])
-    
+    }, [image]);
+
+    const handleCameraShow = () => {
+        setShow(!show);
+    }
+
+    function MostrarCam() {
+        if (show) {
+            return (
+                <div style={containerStyle} className='camcanvas'>
+                    <Camera
+                        device={DEVICE.MOBILE}
+                        facingMode={FACING_MODE.ENVIRONMENT}
+                        placement={PLACEMENT.COVER}
+                        quality="1"
+                        onError={error => handleError(error)}
+                        onTakePhoto={dataUrl => handleData(dataUrl)}
+                    />
+                </div>
+            );
+        } else {
+            return (
+                null
+            );
+        }
+    }
+
 
     return (
         <>
@@ -68,15 +95,10 @@ const ReactIos = () => {
                     no cam
                 </div>
             ) : (
-                <div style={containerStyle} className='camcanvas'>
-                    <Camera
-                        device={DEVICE.MOBILE}
-                        facingMode={FACING_MODE.ENVIRONMENT}
-                        placement={PLACEMENT.COVER}
-                        quality="1"
-                        onError={error => handleError(error)}
-                        onTakePhoto={dataUrl => handleData(dataUrl)}
-                    />
+                <div>
+                    <button onClick={handleCameraShow}>Utilizar cámara</button>
+
+                    <MostrarCam />
                 </div>
             )}
 
@@ -88,7 +110,7 @@ const ReactIos = () => {
             <br />
             {urlData ? (
                 <div>
-                    <img style={{width: '200px', height: '200px', objectFit: 'cover'}} src={urlData} alt='captured image' />
+                    <img style={{ width: '200px', height: '200px', objectFit: 'cover' }} src={urlData} alt='captured image' />
                 </div>
             ) : (
                 <div>
@@ -100,7 +122,7 @@ const ReactIos = () => {
             <br />
             {imgBlob ? (
                 <div>
-                    <img style={{width: '200px', height: '200px', objectFit: 'cover'}} src={imgBlob} alt='selected image' />
+                    <img style={{ width: '200px', height: '200px', objectFit: 'cover' }} src={imgBlob} alt='selected image' />
                 </div>
             ) : (
                 <div>
