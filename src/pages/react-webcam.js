@@ -120,12 +120,12 @@ const ReactWebcam = () => {
                 );
             }
         } else {
-            if (imgSrc) {
+            if (imgBlob) {
                 return (
                     <div>
                         <label>Preview:</label>
                         <div className="d-flex align-items-center justify-content-center">
-                            <img style={{ width: '99%', height: '300px', objectFit: 'cover' }} src={imgSrc} alt='captured image' />
+                            <img style={{ width: '99%', height: '300px', objectFit: 'cover' }} src={imgBlob} alt='captured image' />
                         </div>
                     </div>
                 );
