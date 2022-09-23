@@ -105,18 +105,28 @@ const ReactWebcam = () => {
                     </div>
                 );
             } else {
-                return (
-                    <div className="camcanvas" onClick={capture}>
-                        <Webcam
-                            audio={false}
-                            ref={webcamRef}
-                            screenshotFormat="image/jpeg"
-                            style={{width: '100%', height: '200px'}}
-                            videoConstraints={videoConstraints}
-                            onUserMediaError={(error) => handleError(error)}
-                        />
-                    </div>
-                );
+                if (imgSrc) {
+                    return (
+                        <div>
+                            Preview:
+                            <br/>
+                            <img style={{ width: '90%', height: 'auto' }} src={imgSrc} alt='captured image' />
+                        </div>
+                    );
+                } else {
+                    return (
+                        <div className="camcanvas" onClick={capture}>
+                            <Webcam
+                                audio={false}
+                                ref={webcamRef}
+                                screenshotFormat="image/jpeg"
+                                style={{ width: '100%', height: 'auto' }}
+                                videoConstraints={videoConstraints}
+                                onUserMediaError={(error) => handleError(error)}
+                            />
+                        </div>
+                    );
+                }
             }
         } else {
             return (
