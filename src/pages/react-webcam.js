@@ -113,7 +113,7 @@ const ReactWebcam = () => {
                             audio={false}
                             ref={webcamRef}
                             screenshotFormat="image/jpeg"
-                            style={{ width: '99%', height: '250px' }}
+                            style={{ width: '99%', height: '250px', objectFit: 'cover' }}
                             videoConstraints={videoConstraints}
                             onUserMediaError={(error) => handleError(error)}
                         />
