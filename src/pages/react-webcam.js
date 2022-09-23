@@ -47,6 +47,7 @@ const ReactWebcam = () => {
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
         setImgSrc(imageSrc);
+        setImgBlob(imageSrc);
         setShow(false);
     }, [webcamRef, setImgSrc]);
 
@@ -83,14 +84,13 @@ const ReactWebcam = () => {
         let imgSize = e.target.files[0].size;
         if (typeSplit[0] === 'image' && imgSize < 700000) {
             setImgError(false);
-            setImgSrc(imgData);
+            setImage(imgData);
         } else {
             setImgError(true);
         }
     }
 
     useEffect(() => {
-        console.log(image);
         if (image !== null) {
             const objectUrl = URL.createObjectURL(image);
             setImgBlob(objectUrl);
