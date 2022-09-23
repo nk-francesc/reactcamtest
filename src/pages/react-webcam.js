@@ -50,8 +50,6 @@ const ReactWebcam = () => {
     }, [webcamRef, setImgSrc]);
 
     const videoConstraints = {
-        width: 500,
-        height: 500,
         facingMode: { exact: "environment" }
     };
 
@@ -113,6 +111,7 @@ const ReactWebcam = () => {
                             audio={false}
                             ref={webcamRef}
                             screenshotFormat="image/jpeg"
+                            style={{width: '100%', height: '200px'}}
                             videoConstraints={videoConstraints}
                             onUserMediaError={(error) => handleError(error)}
                         />
@@ -133,7 +132,7 @@ const ReactWebcam = () => {
 
             <input ref={editFileRef} onChange={onFileChange} type="file" id="formFile" accept="image/png, image/jpeg" style={{ display: 'none' }} />
             <button type="button" onClick={handleSelecImg}>Seleccionar archivo</button>
-            
+
 
             foto:
             <br />
