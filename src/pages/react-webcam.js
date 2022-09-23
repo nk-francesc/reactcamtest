@@ -133,20 +133,7 @@ const ReactWebcam = () => {
 
             <input ref={editFileRef} onChange={onFileChange} type="file" id="formFile" accept="image/png, image/jpeg" style={{ display: 'none' }} />
             <button type="button" onClick={handleSelecImg}>Seleccionar archivo</button>
-
-            {errorCam ? (
-                <div>
-                    no cam
-                </div>
-            ) : (
-                <div>
-                    <button onClick={handleCameraShow}>Utilizar cámara</button>
-
-                    <MostrarCam />
-                </div>
-            )}
-
-            <button onClick={capture}>Capture photo</button>
+            
 
             foto:
             <br />
