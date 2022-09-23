@@ -47,7 +47,7 @@ const ReactWebcam = () => {
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
         setImgSrc(imageSrc);
-        setShow(!show);
+        setShow(false);
     }, [webcamRef, setImgSrc]);
 
     const videoConstraints = {
@@ -83,7 +83,6 @@ const ReactWebcam = () => {
         let imgSize = e.target.files[0].size;
         if (typeSplit[0] === 'image' && imgSize < 700000) {
             setImgError(false);
-            setImage(imgData);
             setImgSrc(imgData);
         } else {
             setImgError(true);
@@ -108,16 +107,17 @@ const ReactWebcam = () => {
                 );
             } else {
                 return (
-                    <div className="camcanvas" onClick={capture}>
-                        <Webcam
-                            audio={false}
-                            ref={webcamRef}
-                            screenshotFormat="image/jpeg"
-                            style={{ width: '99%', height: '250px', objectFit: 'cover' }}
-                            videoConstraints={videoConstraints}
-                            onUserMediaError={(error) => handleError(error)}
-                        />
-                    </div>
+                    <Webcam
+                        audio={false}
+                        ref={webcamRef}
+                        onClick={capture}
+                        screenshotFormat="image/jpeg"
+                        style={{ width: '99%', height: '300px', objectFit: 'cover' }}
+                        className='camcanvas'
+                        videoConstraints={videoConstraints}
+                        onUserMediaError={(error) => handleError(error)}
+                        
+                    />
                 );
             }
         } else {
@@ -126,7 +126,7 @@ const ReactWebcam = () => {
                     <div>
                         <label>Preview:</label>
                         <div className="d-flex align-items-center justify-content-center">
-                            <img style={{ width: '99%', height: '250px', objectFit: 'cover' }} src={imgSrc} alt='captured image' />
+                            <img style={{ width: '99%', height: '300px', objectFit: 'cover' }} src={imgSrc} alt='captured image' />
                         </div>
                     </div>
                 );
