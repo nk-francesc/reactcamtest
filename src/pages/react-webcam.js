@@ -47,6 +47,7 @@ const ReactWebcam = () => {
     const capture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
         setImgSrc(imageSrc);
+        setShow(!show);
     }, [webcamRef, setImgSrc]);
 
     const videoConstraints = {
@@ -83,6 +84,7 @@ const ReactWebcam = () => {
         if (typeSplit[0] === 'image' && imgSize < 700000) {
             setImgError(false);
             setImage(imgData);
+            setImgSrc(imgData);
         } else {
             setImgError(true);
         }
@@ -105,33 +107,34 @@ const ReactWebcam = () => {
                     </div>
                 );
             } else {
-                if (imgSrc) {
-                    return (
-                        <div>
-                            Preview:
-                            <br/>
-                            <img style={{ width: '90%', height: 'auto' }} src={imgSrc} alt='captured image' />
-                        </div>
-                    );
-                } else {
-                    return (
-                        <div className="camcanvas" onClick={capture}>
-                            <Webcam
-                                audio={false}
-                                ref={webcamRef}
-                                screenshotFormat="image/jpeg"
-                                style={{ width: '100%', height: 'auto' }}
-                                videoConstraints={videoConstraints}
-                                onUserMediaError={(error) => handleError(error)}
-                            />
-                        </div>
-                    );
-                }
+                return (
+                    <div className="camcanvas" onClick={capture}>
+                        <Webcam
+                            audio={false}
+                            ref={webcamRef}
+                            screenshotFormat="image/jpeg"
+                            style={{ width: '99%', height: '250px' }}
+                            videoConstraints={videoConstraints}
+                            onUserMediaError={(error) => handleError(error)}
+                        />
+                    </div>
+                );
             }
         } else {
-            return (
-                null
-            );
+            if (imgSrc) {
+                return (
+                    <div>
+                        <label>Preview:</label>
+                        <div className="d-flex align-items-center justify-content-center">
+                            <img style={{ width: '99%', height: '250px', objectFit: 'cover' }} src={imgSrc} alt='captured image' />
+                        </div>
+                    </div>
+                );
+            } else {
+                return (
+                    null
+                );
+            }
         }
     }
 
@@ -243,9 +246,9 @@ const ReactWebcam = () => {
                             <MostrarCam />
                         </div>
                         <div className="form-actions">
-                            <div className="card-body border-top">
+                            <div className="card-body border-top d-flex align-items-end justify-content-end">
                                 <button type="submit" className="btn btn-success rounded px-3" data-bs-dismiss="offcanvas" aria-label="Close" tabIndex="-1">
-                                    <div className="d-flex align-items-center">
+                                    <div className="d-flex align-items-center justify-content-end">
                                         <i className="mdi mdi-content-save me-2" /> Dar de alta
                                     </div>
                                 </button>
