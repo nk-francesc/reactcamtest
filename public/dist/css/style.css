@@ -1,0 +1,99 @@
+/*.date-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mb-3 {
+    width: 50% !important;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.row {
+    margin-bottom: 6px !important;
+}
+
+.body-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.image-container {
+    padding-right: 10px;
+    width: 40vw;
+    height: 80vh;
+    background-color: bisque;
+}
+
+.invoice-data {
+    width: 45rem;
+}
+
+.table-responsive {
+    overflow-x: hidden !important;
+}
+
+table.dataTable tbody tr:hover {
+    cursor: pointer !important;
+}
+
+form label {
+    font-size: 13px !important;
+}
+
+.form-control {
+    padding: 0.215rem 0.75rem !important
+}
+
+.select2-selection .selec2-selection--single {
+    height: 30px !important;
+}
+
+.flex-space {
+    width: 100px;
+}
+
+#info-icon {
+    text-align: center;
+}
+#info-msg {
+    text-align: center;
+}
+
+.select2-container--classic .select2-selection--single, .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--single .select2-selection__arrow, .select2-container--default .select2-selection--single .select2-selection__rendered {
+    height: 35px !important;
+}
+
+.flex-modal {
+    display: flex;
+}
+
+.modal-opts {
+    width: 70%;
+    padding-right: 20px;
+}
+
+.modal-form {
+    width: 50%;
+}
+
+.flex2 {
+    display: flex;
+    height: 40px;
+}
+
+.flex2 button {
+    margin-left: 10px;
+}
+*/
+
+/* cards */
+.card-body {
+    padding: 0.6rem 1.25rem !important;
+}
+
+.card {
+    margin-bottom: 15px !important;
+}
