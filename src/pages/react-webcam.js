@@ -102,7 +102,7 @@ const ReactWebcam = () => {
             if (errorCam) {
                 return (
                     <div>
-                        no cam
+                        No se puede utilizar la cámara.
                     </div>
                 );
             } else {
@@ -113,10 +113,9 @@ const ReactWebcam = () => {
                         onClick={capture}
                         screenshotFormat="image/jpeg"
                         style={{ width: '99%', height: '300px', objectFit: 'cover' }}
-                        className='camcanvas'
                         videoConstraints={videoConstraints}
                         onUserMediaError={(error) => handleError(error)}
-                        
+
                     />
                 );
             }
@@ -235,7 +234,7 @@ const ReactWebcam = () => {
                             <label>Imagen</label>
                             <div className="col-10">
                                 <div className="mb-1">
-                                    <input className="form-control" type="file" id="formFile" accept="image/png, image/jpeg" />
+                                    <input className="form-control" type="file" id="formFile" accept="image/png, image/jpeg" onChange={onFileChange} />
                                 </div>
                             </div>
                             <div className="col-2">
