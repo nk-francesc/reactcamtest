@@ -52,10 +52,8 @@ const ReactWebcam = () => {
     }, [webcamRef, setImgSrc]);
 
     const videoConstraints = {
-        video: {
-            facingMode: {
-                exact: "environment"
-            }
+        facingMode: {
+            exact: "environment"
         }
     };
 
@@ -119,7 +117,7 @@ const ReactWebcam = () => {
                         onClick={capture}
                         screenshotFormat="image/jpeg"
                         style={{ width: '99%', height: '300px', objectFit: 'cover' }}
-                        videoConstraints={videoConstraints}
+                        facingmode={'environment'}
                         onUserMediaError={(error) => handleError(error)}
 
                     />
